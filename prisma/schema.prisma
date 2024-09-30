@@ -1,0 +1,19 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Grocery {
+  id     String  @id @default(cuid())
+  name   String
+  amount Int
+  notes  String?
+  status String? @default("pending") // Use string and enforce allowed values in your application peStatus (either "pending" or "purchased")
+}
